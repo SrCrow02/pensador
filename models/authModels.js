@@ -6,19 +6,20 @@ const firebaseAuth = getAuth(auth);
 const database = getDatabase();
 
 async function createNewUser(email, password) {
-    createUserWithEmailAndPassword(firebaseAuth, email, password)
+    try{
+        createUserWithEmailAndPassword(firebaseAuth, email, password)
+    } catch(err){
+        console.log(err);
+        res.status(500).send('Erro interno ao criar usuario.');
+    }
 }
 
 async function login(email, password) {
-    signInWithEmailAndPassword(firebaseAuth, email, password)
+    try{
+        signInWithEmailAndPassword(firebaseAuth, email, password)
+    } catch (err) {
+        res.status(500).send('Erro interno ao logar com o usuario.');
+    }
 }
 
-async function getUserId() {
-    const user = firebaseAuth.currentUser;
-    
-    const userId = user.uid;  
-    
-    return userId;
-}
-
-module.exports = { createNewUser, login, getUserId }
+module.exports = { createNewUser, login }

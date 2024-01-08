@@ -1,4 +1,5 @@
 const { database, app, ref, set, push, get } = require("../db/db");
+const { getUserId } = require("../helpers/getUserId")
 
 async function createThoughts(thought, userId) {
     try {
@@ -50,5 +51,21 @@ async function showMyThoughts(userId) {
     }
 }
 
-module.exports = { createThoughts, showAllThoughts, showMyThoughts };
+async function getThoughtById(userId, thoughtId) {
+    const thoughtRef = ref(database, `thoughts/${userId}/${thoughtId}`);
+    const snapshot = await get(thoughtRef);
+
+    if (snapshot.exists()) {
+        return { id: thoughtId, ...snapshot.val() };
+    } else {
+        throw new Error('Pensamento não encontrado');
+    }
+}
+
+async function updateThought(userId, thoughtId, newContent){
+    const thoughtRef = ref(database, `thoughts/${userId}/${thoughtId}`);
+    await update(thoughtRef, { thought: newContent })
+}
+
+module.exports = { createThoughts, showAllThoughts, showMyThoughts, getThoughtById, updateThought };
 

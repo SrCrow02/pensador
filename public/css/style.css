@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    align-items: center;
+}
+
+nav {
+    background-color: cadetblue;
+    display: flex;
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    align-items: center; /* Centraliza os itens verticalmente */
+}
+
+li {
+    list-style: none;
+    display: inline;
+    word-spacing: 5px;
+    margin: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: white;
+}
