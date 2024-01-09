@@ -12,7 +12,11 @@ router.get("/", showThoughts)
 
 router.get("/mythoughts", showMy)
 
-router.get("/edit/:id", getThought)
+router.get("/edit/:id", (req, res) => {
+    const thoughtId = req.params.id;
+    
+    res.render("editThought", { thoughtId });
+});
 router.post("/edit/:id", editThought)
 
 module.exports = router

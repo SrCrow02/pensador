@@ -1,0 +1,57 @@
+.pensamentos {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+}
+
+.pensamentos h1 {
+    font-size: 24px;
+    color: #333;
+    display: block;
+}
+
+.div-pensamentos {
+    margin-top: 10px;
+    
+}
+
+.caixa-pensamento {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.conteudo-pensamento {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.botoes-acoes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.botao {
+    padding: 6px 12px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.botao-editar {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    margin: 5px;
+}
+
+.botao-excluir {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    margin: 5px;
+}

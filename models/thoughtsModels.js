@@ -15,18 +15,18 @@ async function createThoughts(thought, userId) {
 
 async function showAllThoughts() {
     try {
-        const thoughtsRef = ref(database, 'thoughts/');
+        const thoughtsRef = ref(database, `thoughts/`);
         const snapshot = await get(thoughtsRef);
 
         if (snapshot.exists()) {
-            const thoughts = snapshot.val();
-            console.log('Todos os pensamentos:', thoughts);
-            return thoughts;
+            const thoughtsValue = snapshot.val();
+            console.log('Todos os pensamentos:', thoughtsValue);
+            return thoughtsValue;
         } else {
             console.log('Nenhum pensamento encontrado.');
             return null;
         }
-    } catch (error) {
+    } catch(error) {
         console.error('Erro ao obter pensamentos:', error);
         throw error;
     }
@@ -34,7 +34,7 @@ async function showAllThoughts() {
 
 async function showMyThoughts(userId) {
     try {
-        const thoughtsRef = ref(database, `thoughts/${userId}`);
+        const thoughtsRef = ref(database, `thoughts/${userId}/`);
         const snapshot = await get(thoughtsRef);
 
         if (snapshot.exists()) {

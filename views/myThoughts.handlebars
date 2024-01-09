@@ -1,3 +1,20 @@
-{{#each my}}
-    {{this}}
-{{/each}}
+    <link rel="stylesheet" href="/css/myThoughts.css">
+    
+    <h1>Meus Pensamentos:</h1>
+    <section class="pensamentos">
+        <div class="div-pensamentos">
+            {{#each myThoughts}}
+                <div class="caixa-pensamento">
+                    <p class="conteudo-pensamento">{{this.thought}}</p>
+                    <div class="botoes-acoes">
+                        <form action="/edit/:id" method="POST">
+                            <input class="botao botao-editar" type="submit" name="editar">
+                        </form>
+                        <form action="/delete" method="POST">
+                            <input class="botao botao-excluir" type="submit" name="excluir">
+                        </form>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </section>

@@ -12,6 +12,7 @@ async function addThoughts(req, res) {
 async function showThoughts(req, res) {
     try {
         const thoughts = await showAllThoughts();
+        console.log('Pensamentos obtidos:', thoughts);
         res.render("index", { thoughts });
     } catch (error) {
         console.error('Erro ao exibir pensamentos:', error);
@@ -20,10 +21,16 @@ async function showThoughts(req, res) {
 }
 
 async function showMy(req, res) {
-    const id = await getUserId();
-    const my = await showMyThoughts(id)
+    try {
+        const id = await getUserId();
+        const myThoughts = await showMyThoughts(id);
 
-    res.render('myThoughts', { my });
+        res.render('myThoughts', { myThoughts });
+    } catch (error) {
+        // Lide com erros adequadamente
+        console.error('Erro ao mostrar meus pensamentos:', error);
+        res.status(500).send('Erro interno do servidor');
+    }
 }
 
 async function getThought(req, res){
@@ -41,8 +48,8 @@ async function editThought(req, res) {
     const thoughtId = req.params.id;
 
     try{
-        const user = getUserId()
-        const thought = getThoughtById(user, thoughtId)
+        const user = await getUserId()
+        const thought = await getThoughtById(user, thoughtId)
 
         updateThought(user, thought, content);
 
@@ -50,8 +57,6 @@ async function editThought(req, res) {
     } catch (err) {
         console.log(err)
     }
-    
-    
 }
 
 module.exports = { addThoughts, showThoughts, showMy, getThought, editThought }
